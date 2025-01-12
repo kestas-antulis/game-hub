@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 const useGames = () => {
   const [games, setGames] = useState<TGamesResponse>({ count: 0, results: [] });
-  const [error, setSerror] = useState("");
+  const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -17,14 +17,14 @@ const useGames = () => {
       })
       .catch((err) => {
         if (err instanceof CanceledError) return;
-        setSerror(err.message);
+        setError(err.message);
         setIsLoading(false);
       });
 
     return () => cancel();
   }, []);
 
-  return { games, setGames, error, setSerror, isLoading };
+  return { games, setGames, error, setError, isLoading };
 };
 
 export default useGames;

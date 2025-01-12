@@ -19,4 +19,4 @@ export type TGamesResponse = {
   results: TGame[];
 };
 
-export default create("/games?tags=action-rpg&page_size=50");
+export default create("/games");
