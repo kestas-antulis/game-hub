@@ -9,7 +9,6 @@ function Navbar() {
       <Image src={logo} boxSize="60px;" />
       <ColorModeSwitch />
     </HStack>
-    
   );
 }
 
