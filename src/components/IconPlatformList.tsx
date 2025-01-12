@@ -33,6 +33,7 @@ function IconPlatformList({ platforms }: TProps) {
     <HStack>
       {platforms.map((platform) => (
         <Icon
+          key={platform.id}
           as={iconMap[platform.slug]}
           color="gray.500"
           cursor="pointer"
