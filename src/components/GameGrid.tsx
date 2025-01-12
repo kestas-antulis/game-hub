@@ -1,30 +1,8 @@
-import apiClient from "@/services/apiClient";
 import { Text } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
-
-type TGame = {
-  id: number;
-  name: string;
-  metacritic: number;
-};
-
-type TGamesResponse = {
-  count: number;
-  results: TGame[];
-};
+import useGames from "@/hooks/useGames";
 
 function GameGrid() {
-  const [games, setGames] = useState<TGamesResponse>({ count: 0, results: [] });
-  const [error, setSerror] = useState("");
-  useEffect(() => {
-    apiClient
-      .get<TGamesResponse>("/games")
-      .then((response) => {
-        setGames(response.data);
-        console.log(games);
-      })
-      .catch((err) => setSerror(err.message));
-  }, []);
+  const { games, error } = useGames();
 
   return (
     <>
