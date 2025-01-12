@@ -1,6 +1,7 @@
 import { TGame } from "@/services/gameService";
-import { Card, CardBody, Heading, Image } from "@chakra-ui/react";
+import { Card, CardBody, Heading, HStack, Image } from "@chakra-ui/react";
 import IconPlatformList from "./IconPlatformList";
+import CriticScore from "./CriticScore";
 
 type TProps = {
   key: number;
@@ -21,9 +22,12 @@ function GameCard({ key, game }: TProps) {
         <Heading fontSize="2xl" marginBottom="10px">
           {game.name}
         </Heading>
-        <IconPlatformList
-          platforms={game.parent_platforms.map(({ platform }) => platform)}
-        />
+        <HStack justifyContent="space-between">
+          <IconPlatformList
+            platforms={game.parent_platforms.map(({ platform }) => platform)}
+          />
+          <CriticScore score={game.metacritic} />
+        </HStack>
       </CardBody>
     </Card>
   );

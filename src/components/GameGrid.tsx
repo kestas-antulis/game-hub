@@ -4,15 +4,15 @@ import GameCard from "./GameCard";
 
 function GameGrid() {
   const { games, error } = useGames();
+  console.log(games);
 
   return (
     <>
       {error && <Text>{error}</Text>}
       <SimpleGrid columns={{ sm: 1, md: 2, lg: 4 }} spacing={10} padding="10px">
-        {games.results.map(
-          (game) =>
-            game.metacritic > 90 && <GameCard key={game.id} game={game} />
-        )}
+        {games.results.map((game) => (
+          <GameCard key={game.id} game={game} />
+        ))}
       </SimpleGrid>
     </>
   );
