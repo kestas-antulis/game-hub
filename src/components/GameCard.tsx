@@ -2,6 +2,7 @@ import { TGame } from "@/services/gameService";
 import { Card, CardBody, Heading, HStack, Image } from "@chakra-ui/react";
 import IconPlatformList from "./IconPlatformList";
 import CriticScore from "./CriticScore";
+import getCroppedImageUrl from "@/services/imageUrl";
 
 type TProps = {
   key: number;
@@ -12,7 +13,7 @@ function GameCard({ key, game }: TProps) {
   return (
     <Card key={key} borderRadius="10px" overflow="hidden">
       <Image
-        src={game.background_image}
+        src={getCroppedImageUrl(game.background_image)}
         alt={game.name}
         objectFit="cover"
         objectPosition="top"
