@@ -1,23 +1,49 @@
 import { BsChevronDown, BsChevronUp } from "react-icons/bs";
-import { Menu, MenuButton, Button, MenuList, MenuItem } from "@chakra-ui/react";
+import {
+  Menu,
+  MenuButton,
+  Button,
+  MenuList,
+  MenuItem,
+  useDisclosure,
+} from "@chakra-ui/react";
 import usePlatforms from "@/hooks/usePlatforms";
+import { TParentPlatform } from "@/hooks/useGames";
 
-function PlatformSelector() {
-  const { data: platforms } = usePlatforms();
+type TProps = {
+  onActivePlatform: (activePlatform: TParentPlatform) => void;
+  activePlatform: TParentPlatform | null;
+};
+
+function PlatformSelector({ onActivePlatform, activePlatform }: TProps) {
+  const { data: platforms, error } = usePlatforms();
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  if (error) return null;
 
   return (
-    <Menu>
+    <Menu isOpen={isOpen} onClose={onClose}>
       {({ isOpen }) => (
         <>
           <MenuButton
             as={Button}
+            onMouseOver={onOpen}
+            onMouseOutCapture={onClose}
             rightIcon={isOpen ? <BsChevronUp /> : <BsChevronDown />}
           >
-            Platforms
+            {activePlatform?.name || "Platform"}
           </MenuButton>
-          <MenuList>
+          <MenuList onMouseOver={onOpen} onMouseOutCapture={onClose}>
             {platforms?.results.map((platform) => (
-              <MenuItem>{platform.name}</MenuItem>
+              <MenuItem
+                key={platform.id}
+                onClick={() => onActivePlatform(platform)}
+                justifyContent="space-between"
+              >
+                {platform.name}
+                {platform.platforms.length > 1 &&
+                  `(${platform.platforms.length})`}
+              </MenuItem>
             ))}
           </MenuList>
         </>

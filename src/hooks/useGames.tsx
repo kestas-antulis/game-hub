@@ -15,10 +15,17 @@ export type TGame = {
   parent_platforms: { platform: TParentPlatform }[];
 };
 
-function useGames(activeGenre: TGenre | null) {
-  return useData<TGame>("/games", { params: { genres: activeGenre?.id } }, [
-    activeGenre?.id,
-  ]);
+function useGames(
+  activeGenre: TGenre | null,
+  activePlatform: TParentPlatform | null
+) {
+  return useData<TGame>(
+    "/games",
+    {
+      params: { genres: activeGenre?.id, parent_platforms: activePlatform?.id },
+    },
+    [activeGenre?.id, activePlatform?.id]
+  );
 }
 
 export default useGames;

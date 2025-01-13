@@ -1,14 +1,19 @@
 import { SimpleGrid, Skeleton, Text } from "@chakra-ui/react";
-import useGames from "@/hooks/useGames";
+import useGames, { TParentPlatform } from "@/hooks/useGames";
 import GameCard from "./GameCard";
 import { TGenre } from "@/hooks/useGenres";
 
 type TProps = {
   activeGenre: TGenre | null;
+  activePlatform: TParentPlatform | null;
 };
 
-function GameGrid({ activeGenre }: TProps) {
-  const { data: games, error, isLoading } = useGames(activeGenre);
+function GameGrid({ activeGenre, activePlatform }: TProps) {
+  const {
+    data: games,
+    error,
+    isLoading,
+  } = useGames(activeGenre, activePlatform);
 
   return (
     <>
