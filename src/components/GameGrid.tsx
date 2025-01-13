@@ -11,27 +11,26 @@ function GameGrid({ gameQuery }: TProps) {
   const { data: games, error, isLoading } = useGames(gameQuery);
   console.log(games);
 
+  if (error) return <Text>{error}</Text>;
+
   return (
-    <>
-      {error && <Text>{error}</Text>}
-      <SimpleGrid
-        columns={{ sm: 1, md: 2, lg: 3, xl: 4 }}
-        spacing={5}
-        marginTop={{ base: "0", sm: "20px" }}
-      >
-        {games &&
-          games.results.map((game) => (
-            <Skeleton
-              key={game.id}
-              isLoaded={!isLoading}
-              fadeDuration={1}
-              borderRadius="10px"
-            >
-              <GameCard game={game} />
-            </Skeleton>
-          ))}
-      </SimpleGrid>
-    </>
+    <SimpleGrid
+      columns={{ sm: 1, md: 2, lg: 3, xl: 4 }}
+      spacing={5}
+      marginTop={{ base: "0", sm: "20px" }}
+    >
+      {games &&
+        games.results.map((game) => (
+          <Skeleton
+            key={game.id}
+            isLoaded={!isLoading}
+            fadeDuration={1}
+            borderRadius="10px"
+          >
+            <GameCard game={game} />
+          </Skeleton>
+        ))}
+    </SimpleGrid>
   );
 }
 
