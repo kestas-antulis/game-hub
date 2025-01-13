@@ -15,8 +15,8 @@ function GameGrid() {
       >
         {games &&
           games.results.map((game) => (
-            <Skeleton isLoaded={!isLoading} fadeDuration={1}>
-              <GameCard key={game.id} game={game} />
+            <Skeleton key={game.id} isLoaded={!isLoading} fadeDuration={1}>
+              <GameCard game={game} />
             </Skeleton>
           ))}
       </SimpleGrid>

@@ -9,9 +9,9 @@ import {
 import { MdPhoneIphone } from "react-icons/md";
 import { SiNintendo } from "react-icons/si";
 import { BsGlobe } from "react-icons/bs";
-import { TParentPlatform } from "@/services/gameService";
 import { HStack, Icon } from "@chakra-ui/react";
 import { IconType } from "react-icons";
+import { TParentPlatform } from "@/hooks/useGames";
 
 type TProps = {
   platforms: TParentPlatform[];

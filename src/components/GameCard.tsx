@@ -5,13 +5,12 @@ import getCroppedImageUrl from "@/services/imageUrl";
 import { TGame } from "@/hooks/useGames";
 
 type TProps = {
-  key: number;
   game: TGame;
 };
 
-function GameCard({ key, game }: TProps) {
+function GameCard({ game }: TProps) {
   return (
-    <Card key={key} borderRadius="10px" overflow="hidden" height="100%">
+    <Card borderRadius="10px" overflow="hidden" height="100%">
       <Image
         src={getCroppedImageUrl(game.background_image)}
         alt={game.name}

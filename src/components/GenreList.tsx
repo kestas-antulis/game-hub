@@ -7,6 +7,7 @@ import {
   Skeleton,
   Text,
   Image,
+  Button,
 } from "@chakra-ui/react";
 
 function GenreList() {
@@ -18,17 +19,24 @@ function GenreList() {
       <List>
         {genres &&
           genres.results.map((genre) => (
-            <Skeleton isLoaded={!isLoading}>
-              <ListItem key={genre.id} paddingY="5px">
-                <HStack>
+            <Skeleton isLoaded={!isLoading} key={genre.id}>
+              <ListItem paddingY="5px">
+                <HStack className="group">
                   <Image
                     boxSize="32px"
                     borderRadius={8}
                     src={getCroppedImageUrl(genre.image_background)}
                     transition="transform 0.25s ease"
-                    _hover={{ transform: "scale(1.1)" }}
+                    _groupHover={{ transform: "scale(1.2)" }}
                   />
-                  <Text fontSize="lg">{genre.name}</Text>
+                  <Button
+                    size="md"
+                    variant="plain"
+                    padding="8px"
+                    _groupHover={{ textDecoration: "underline" }}
+                  >
+                    {genre.name}
+                  </Button>
                 </HStack>
               </ListItem>
             </Skeleton>
