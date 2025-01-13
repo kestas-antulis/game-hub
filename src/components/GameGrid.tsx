@@ -17,6 +17,7 @@ function GameGrid({ activeGenre }: TProps) {
         columns={{ sm: 1, md: 2, lg: 3, xl: 4 }}
         spacing={5}
         padding={{ sm: "20px", md: "20px", lg: "20px", "2xl": "0" }}
+        marginTop="20px"
       >
         {games &&
           games.results.map((game) => (

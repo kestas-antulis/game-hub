@@ -12,9 +12,10 @@ import {
 
 type TProps = {
   onSelectGenre: (genre: TGenre) => void;
+  activeGenre: TGenre | null;
 };
 
-function GenreList({ onSelectGenre }: TProps) {
+function GenreList({ onSelectGenre, activeGenre }: TProps) {
   const { data: genres, error, isLoading } = useGenres();
 
   return (
@@ -39,6 +40,9 @@ function GenreList({ onSelectGenre }: TProps) {
                     padding="8px"
                     onClick={() => onSelectGenre(genre)}
                     _groupHover={{ textDecoration: "underline" }}
+                    fontWeight={
+                      activeGenre?.id === genre.id ? "bold" : "normal"
+                    }
                   >
                     {genre.name}
                   </Button>
