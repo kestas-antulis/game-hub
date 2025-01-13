@@ -37,7 +37,16 @@ function App() {
         </GridItem>
       </Show>
       <GridItem area="main" maxWidth="1280px">
-        <HStack spacing={5}>
+        <HStack
+          spacing={5}
+          padding={{
+            base: "10px",
+            sm: "20px",
+            md: "20px",
+            lg: "20px",
+            "2xl": "0",
+          }}
+        >
           <PlatformSelector
             activePlatform={gameQuery.platform}
             onActivePlatform={(platform) =>
