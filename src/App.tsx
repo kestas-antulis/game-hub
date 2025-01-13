@@ -7,6 +7,7 @@ import { TGenre } from "./hooks/useGenres";
 import PlatformSelector from "./components/PlatformSelector";
 import { TParentPlatform } from "./hooks/useGames";
 import SortSelector from "./components/SortSelector";
+import GameHeading from "./components/GameHeading";
 
 export type TGameQuery = {
   genre: TGenre | null;
@@ -39,17 +40,19 @@ function App() {
           />
         </GridItem>
       </Show>
-      <GridItem area="main" maxWidth="1280px">
-        <HStack
-          spacing={5}
-          padding={{
-            base: "10px",
-            sm: "20px",
-            md: "20px",
-            lg: "20px",
-            "2xl": "0",
-          }}
-        >
+      <GridItem
+        area="main"
+        maxWidth="1280px"
+        padding={{
+          base: "10px",
+          sm: "20px",
+          md: "20px",
+          lg: "20px",
+          "2xl": "0",
+        }}
+      >
+        <GameHeading gameQuery={gameQuery} />
+        <HStack spacing={5}>
           <PlatformSelector
             activePlatform={gameQuery.platform}
             onActivePlatform={(platform) =>
