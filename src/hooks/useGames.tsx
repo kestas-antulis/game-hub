@@ -1,5 +1,5 @@
+import { TGameQuery } from "@/App";
 import useData from "./useData";
-import { TGenre } from "./useGenres";
 
 export type TParentPlatform = {
   id: number;
@@ -15,16 +15,16 @@ export type TGame = {
   parent_platforms: { platform: TParentPlatform }[];
 };
 
-function useGames(
-  activeGenre: TGenre | null,
-  activePlatform: TParentPlatform | null
-) {
+function useGames(gameQuery: TGameQuery) {
   return useData<TGame>(
     "/games",
     {
-      params: { genres: activeGenre?.id, parent_platforms: activePlatform?.id },
+      params: {
+        genres: gameQuery.genre?.id,
+        parent_platforms: gameQuery.platform?.id,
+      },
     },
-    [activeGenre?.id, activePlatform?.id]
+    [gameQuery.genre?.id, gameQuery.platform?.id]
   );
 }
 

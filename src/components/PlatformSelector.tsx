@@ -42,7 +42,7 @@ function PlatformSelector({ onActivePlatform, activePlatform }: TProps) {
               >
                 {platform.name}
                 {platform.platforms.length > 1 &&
-                  `(${platform.platforms.length})`}
+                  ` (${platform.platforms.length})`}
               </MenuItem>
             ))}
           </MenuList>

@@ -7,11 +7,13 @@ import { TGenre } from "./hooks/useGenres";
 import PlatformSelector from "./components/PlatformSelector";
 import { TParentPlatform } from "./hooks/useGames";
 
+export type TGameQuery = {
+  genre: TGenre | null;
+  platform: TParentPlatform | null;
+};
+
 function App() {
-  const [activeGenre, setActiveGenre] = useState<TGenre | null>(null);
-  const [activePlatform, setActivePlatform] = useState<TParentPlatform | null>(
-    null
-  );
+  const [gameQuery, setGameQuery] = useState<TGameQuery>({} as TGameQuery);
 
   return (
     <Grid
@@ -27,17 +29,19 @@ function App() {
       <Show above="lg">
         <GridItem area="aside" paddingX="5" maxWidth="300px">
           <GenreList
-            onSelectGenre={(genre) => setActiveGenre(genre)}
-            activeGenre={activeGenre}
+            onSelectGenre={(genre) => setGameQuery({ ...gameQuery, genre })}
+            activeGenre={gameQuery.genre}
           />
         </GridItem>
       </Show>
       <GridItem area="main" maxWidth="1280px">
         <PlatformSelector
-          activePlatform={activePlatform}
-          onActivePlatform={(platform) => setActivePlatform(platform)}
+          activePlatform={gameQuery.platform}
+          onActivePlatform={(platform) =>
+            setGameQuery({ ...gameQuery, platform })
+          }
         />
-        <GameGrid activePlatform={activePlatform} activeGenre={activeGenre} />
+        <GameGrid gameQuery={gameQuery} />
       </GridItem>
     </Grid>
   );

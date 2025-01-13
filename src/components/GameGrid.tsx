@@ -1,19 +1,14 @@
 import { SimpleGrid, Skeleton, Text } from "@chakra-ui/react";
-import useGames, { TParentPlatform } from "@/hooks/useGames";
+import useGames from "@/hooks/useGames";
 import GameCard from "./GameCard";
-import { TGenre } from "@/hooks/useGenres";
+import { TGameQuery } from "@/App";
 
 type TProps = {
-  activeGenre: TGenre | null;
-  activePlatform: TParentPlatform | null;
+  gameQuery: TGameQuery;
 };
 
-function GameGrid({ activeGenre, activePlatform }: TProps) {
-  const {
-    data: games,
-    error,
-    isLoading,
-  } = useGames(activeGenre, activePlatform);
+function GameGrid({ gameQuery }: TProps) {
+  const { data: games, error, isLoading } = useGames(gameQuery);
 
   return (
     <>
@@ -26,7 +21,12 @@ function GameGrid({ activeGenre, activePlatform }: TProps) {
       >
         {games &&
           games.results.map((game) => (
-            <Skeleton key={game.id} isLoaded={!isLoading} fadeDuration={1}>
+            <Skeleton
+              key={game.id}
+              isLoaded={!isLoading}
+              fadeDuration={1}
+              borderRadius="10px"
+            >
               <GameCard game={game} />
             </Skeleton>
           ))}
