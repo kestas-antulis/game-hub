@@ -36,6 +36,7 @@ function GenreList({ onSelectGenre, activeGenre }: TProps) {
                     borderRadius={8}
                     objectFit="cover"
                     src={getCroppedImageUrl(genre.image_background)}
+                    title={genre.name}
                     transition="transform 0.25s ease"
                     _groupHover={{ transform: "scale(1.2)" }}
                   />

@@ -1,4 +1,4 @@
-import useData from "./useData";
+import genres from "../data/genres";
 
 export type TGenre = {
   id: number;
@@ -9,7 +9,11 @@ export type TGenre = {
 };
 
 function useGenres() {
-  return useData<TGenre>("/genres");
+  return {
+    data: { count: genres.length, results: genres },
+    isLoading: false,
+    error: null,
+  };
 }
 
 export default useGenres;
