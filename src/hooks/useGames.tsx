@@ -12,6 +12,7 @@ export type TGame = {
   name: string;
   background_image: string;
   metacritic: number;
+  rating: number;
   parent_platforms: { platform: TParentPlatform }[];
 };
 
@@ -23,6 +24,7 @@ function useGames(gameQuery: TGameQuery) {
         genres: gameQuery.genre?.id,
         parent_platforms: gameQuery.platform?.id,
         ordering: gameQuery.order,
+        search: gameQuery.searchText,
       },
     },
     [gameQuery]

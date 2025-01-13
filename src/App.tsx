@@ -12,6 +12,7 @@ export type TGameQuery = {
   genre: TGenre | null;
   platform: TParentPlatform | null;
   order: string;
+  searchText: string;
 };
 
 function App() {
@@ -26,7 +27,9 @@ function App() {
       justifyContent="center"
     >
       <GridItem area="nav">
-        <Navbar />
+        <Navbar
+          onSearch={(searchText) => setGameQuery({ ...gameQuery, searchText })}
+        />
       </GridItem>
       <Show above="lg">
         <GridItem area="aside" paddingX="5" maxWidth="300px">
