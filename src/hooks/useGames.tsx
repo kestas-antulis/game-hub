@@ -22,9 +22,10 @@ function useGames(gameQuery: TGameQuery) {
       params: {
         genres: gameQuery.genre?.id,
         parent_platforms: gameQuery.platform?.id,
+        ordering: gameQuery.order,
       },
     },
-    [gameQuery.genre?.id, gameQuery.platform?.id]
+    [gameQuery]
   );
 }
 
