@@ -31,9 +31,12 @@ function GameCard({ game }: TProps) {
       <CardBody>
         <HStack justifyContent="space-between" marginBottom="10px">
           <IconPlatformList
-            platforms={game.parent_platforms.map(({ platform }) => platform)}
+            platforms={game.parent_platforms?.map(({ platform }) => platform)}
           />
-          <CriticScore score={game.metacritic} />
+          <HStack>
+            {game.rating && <CriticScore score={game.rating} />}
+            {game.metacritic && <CriticScore score={game.metacritic} />}
+          </HStack>
         </HStack>
         <Heading fontSize="2xl">{game.name}</Heading>
       </CardBody>

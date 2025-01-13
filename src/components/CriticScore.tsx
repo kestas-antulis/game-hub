@@ -5,7 +5,10 @@ type TProps = {
 };
 
 function CriticScore({ score }: TProps) {
-  const scoreColor = score < 50 ? "red" : score < 75 ? "yellow" : "green";
+  let scoreColor = score < 50 ? "red" : score < 75 ? "yellow" : "green";
+  if (score < 5) {
+    scoreColor = score < 3 ? "red" : score < 4 ? "yellow" : "green";
+  }
   return (
     <>
       <Badge fontSize="14px" borderRadius="4" colorScheme={scoreColor}>

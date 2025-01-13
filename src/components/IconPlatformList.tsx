@@ -14,7 +14,7 @@ import { IconType } from "react-icons";
 import { TParentPlatform } from "@/hooks/useGames";
 
 type TProps = {
-  platforms: TParentPlatform[];
+  platforms?: TParentPlatform[];
 };
 
 function IconPlatformList({ platforms }: TProps) {
@@ -31,7 +31,7 @@ function IconPlatformList({ platforms }: TProps) {
   };
   return (
     <HStack>
-      {platforms.map((platform) => (
+      {platforms?.map((platform) => (
         <Icon
           key={platform.id}
           as={iconMap[platform.slug]}
