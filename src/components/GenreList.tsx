@@ -8,6 +8,7 @@ import {
   Text,
   Image,
   Button,
+  Heading,
 } from "@chakra-ui/react";
 
 type TProps = {
@@ -20,16 +21,20 @@ function GenreList({ onSelectGenre, activeGenre }: TProps) {
 
   return (
     <>
+      <Heading fontSize="2xl" marginBottom={3}>
+        Genres
+      </Heading>
       {error && <Text>{error}</Text>}
       <List>
         {genres &&
           genres.results.map((genre) => (
             <Skeleton isLoaded={!isLoading} key={genre.id}>
-              <ListItem paddingY="5px">
+              <ListItem paddingTop="8px">
                 <HStack className="group">
                   <Image
                     boxSize="32px"
                     borderRadius={8}
+                    objectFit="cover"
                     src={getCroppedImageUrl(genre.image_background)}
                     transition="transform 0.25s ease"
                     _groupHover={{ transform: "scale(1.2)" }}
