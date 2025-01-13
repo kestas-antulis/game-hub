@@ -27,6 +27,7 @@ function SearchInput({ onSearch }: TProps) {
             ref={searchRef}
             placeholder="Search Games..."
             borderRadius="20px"
+            backgroundColor="gray.700"
             variant="filled"
           />
         </InputGroup>
