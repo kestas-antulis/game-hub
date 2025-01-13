@@ -1,4 +1,4 @@
-import useGenres from "@/hooks/useGenres";
+import useGenres, { TGenre } from "@/hooks/useGenres";
 import getCroppedImageUrl from "@/services/imageUrl";
 import {
   HStack,
@@ -10,7 +10,11 @@ import {
   Button,
 } from "@chakra-ui/react";
 
-function GenreList() {
+type TProps = {
+  onSelectGenre: (genre: TGenre) => void;
+};
+
+function GenreList({ onSelectGenre }: TProps) {
   const { data: genres, error, isLoading } = useGenres();
 
   return (
@@ -33,6 +37,7 @@ function GenreList() {
                     size="md"
                     variant="plain"
                     padding="8px"
+                    onClick={() => onSelectGenre(genre)}
                     _groupHover={{ textDecoration: "underline" }}
                   >
                     {genre.name}

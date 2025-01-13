@@ -10,7 +10,14 @@ type TProps = {
 
 function GameCard({ game }: TProps) {
   return (
-    <Card borderRadius="10px" overflow="hidden" height="100%">
+    <Card
+      borderRadius="10px"
+      overflow="hidden"
+      height="100%"
+      className="group"
+      transition="transform 0.25s ease"
+      _hover={{ transform: "translate(0, -10px)" }}
+    >
       <Image
         src={getCroppedImageUrl(game.background_image)}
         alt={game.name}
@@ -20,7 +27,6 @@ function GameCard({ game }: TProps) {
         objectPosition="top"
         overflow="hidden"
         transition="transform 0.25s ease"
-        _hover={{ transform: "scale(1.1)" }}
       />
       <CardBody>
         <HStack justifyContent="space-between" marginBottom="10px">

@@ -1,4 +1,5 @@
 import useData from "./useData";
+import { TGenre } from "./useGenres";
 
 export type TParentPlatform = {
   id: number;
@@ -14,8 +15,10 @@ export type TGame = {
   parent_platforms: { platform: TParentPlatform }[];
 };
 
-function useGames() {
-  return useData<TGame>("/games");
+function useGames(activeGenre: TGenre | null) {
+  return useData<TGame>("/games", { params: { genres: activeGenre?.id } }, [
+    activeGenre?.id,
+  ]);
 }
 
 export default useGames;
