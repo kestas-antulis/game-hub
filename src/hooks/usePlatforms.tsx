@@ -7,7 +7,7 @@ type TPlatform = {
   games_count: number;
 };
 
-type TParentPlatform = {
+export type TParentPlatform = {
   id: number;
   name: string;
   slug: string;
@@ -15,7 +15,7 @@ type TParentPlatform = {
 };
 
 function usePlatforms() {
-  return useData<TParentPlatform>("/platforms/lists/parents");
+  return useData<TParentPlatform>("/platforms/lists/parents", "platforms");
 }
 
 export default usePlatforms;

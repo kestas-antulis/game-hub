@@ -5,9 +5,9 @@ import GenreList from "./components/GenreList";
 import { useState } from "react";
 import { TGenre } from "./hooks/useGenres";
 import PlatformSelector from "./components/PlatformSelector";
-import { TParentPlatform } from "./hooks/useGames";
 import SortSelector from "./components/SortSelector";
 import GameHeading from "./components/GameHeading";
+import { TParentPlatform } from "./hooks/usePlatforms";
 
 export type TGameQuery = {
   genre: TGenre | null;

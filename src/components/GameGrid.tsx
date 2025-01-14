@@ -11,7 +11,7 @@ function GameGrid({ gameQuery }: TProps) {
   const { data: games, error, isLoading } = useGames(gameQuery);
   console.log(games);
 
-  if (error) return <Text>{error}</Text>;
+  if (error) return <Text>{error.message}</Text>;
 
   return (
     <SimpleGrid

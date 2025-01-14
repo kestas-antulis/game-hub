@@ -18,13 +18,14 @@ type TProps = {
 
 function GenreList({ onSelectGenre, activeGenre }: TProps) {
   const { data: genres, error, isLoading } = useGenres();
+  console.log(genres);
 
   return (
     <>
       <Heading fontSize="2xl" marginBottom={3}>
         Genres
       </Heading>
-      {error && <Text>{error}</Text>}
+      {error && <Text>{error.message}</Text>}
       <List>
         {genres &&
           genres.results.map((genre) => (

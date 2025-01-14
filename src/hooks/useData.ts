@@ -1,47 +1,21 @@
-import create from "@/services/httpService";
-import { AxiosRequestConfig, CanceledError } from "axios";
-import { useEffect, useState } from "react";
+import create, { TResponse } from "@/services/apiClient";
+import { useQuery } from "@tanstack/react-query";
+import { AxiosRequestConfig } from "axios";
 
-type TResponse<T> = {
-  count: number;
-  results: T[];
-};
-
-function useData<D>(
+function useData<T>(
   endpoint: string,
-  requestConfig?: AxiosRequestConfig,
-  dependencies?: unknown[]
+  queryKey: string,
+  requestConfig?: AxiosRequestConfig
 ) {
-  const [data, setData] = useState<TResponse<D>>();
-  const [error, setError] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+  const apiClient = create<TResponse<T>>(endpoint);
 
-  useEffect(
-    () => {
-      setIsLoading(true);
-      const service = create(endpoint);
-      const { request, cancel } = service.getAll<TResponse<D>>(requestConfig);
-      request
-        .then((response) => {
-          setData(response.data);
-          setIsLoading(false);
-        })
-        .catch((err) => {
-          if (err instanceof CanceledError) return;
-          setError(err.message);
-          setIsLoading(false);
-        });
-
-      return () => cancel();
+  return useQuery({
+    queryKey: [queryKey],
+    queryFn: () => {
+      const { request } = apiClient.getAll(requestConfig);
+      return request.then((response) => response.data);
     },
-    dependencies ? [...dependencies] : []
-  );
-
-  return {
-    data,
-    error,
-    isLoading,
-  };
+  });
 }
 
 export default useData;

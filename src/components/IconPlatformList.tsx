@@ -11,7 +11,7 @@ import { SiNintendo } from "react-icons/si";
 import { BsGlobe } from "react-icons/bs";
 import { HStack, Icon } from "@chakra-ui/react";
 import { IconType } from "react-icons";
-import { TParentPlatform } from "@/hooks/useGames";
+import { TParentPlatform } from "@/hooks/usePlatforms";
 
 type TProps = {
   platforms?: TParentPlatform[];
@@ -35,6 +35,7 @@ function IconPlatformList({ platforms }: TProps) {
         <Icon
           key={platform.id}
           as={iconMap[platform.slug]}
+          title={platform.name}
           color="gray.500"
           cursor="pointer"
           _hover={{ color: "gray.100" }}

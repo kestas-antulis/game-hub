@@ -7,8 +7,7 @@ import {
   MenuItem,
   useDisclosure,
 } from "@chakra-ui/react";
-import usePlatforms from "@/hooks/usePlatforms";
-import { TParentPlatform } from "@/hooks/useGames";
+import usePlatforms, { TParentPlatform } from "@/hooks/usePlatforms";
 
 type TProps = {
   onActivePlatform: (activePlatform: TParentPlatform) => void;
