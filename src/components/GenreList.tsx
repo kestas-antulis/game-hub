@@ -1,5 +1,6 @@
-import useGenres, { TGenre } from "@/hooks/useGenres";
+import useGenres from "@/hooks/useGenres";
 import getCroppedImageUrl from "@/services/imageUrl";
+import useGameQueryStore from "@/store";
 import {
   HStack,
   List,
@@ -11,13 +12,10 @@ import {
   Heading,
 } from "@chakra-ui/react";
 
-type TProps = {
-  onSelectGenre: (genre: TGenre) => void;
-  activeGenreId?: number;
-};
-
-function GenreList({ onSelectGenre, activeGenreId }: TProps) {
+function GenreList() {
   const { data: genres, error, isFetching } = useGenres();
+  const selectedGenreId = useGameQueryStore((store) => store.gameQuery.genreId);
+  const setSelectedGenreId = useGameQueryStore((store) => store.setGenreId);
 
   return (
     <>
@@ -44,9 +42,11 @@ function GenreList({ onSelectGenre, activeGenreId }: TProps) {
                     size="md"
                     variant="plain"
                     padding="8px"
-                    onClick={() => onSelectGenre(genre)}
+                    onClick={() => setSelectedGenreId(genre.id)}
                     _groupHover={{ textDecoration: "underline" }}
-                    fontWeight={activeGenreId === genre.id ? "bold" : "normal"}
+                    fontWeight={
+                      selectedGenreId === genre.id ? "bold" : "normal"
+                    }
                   >
                     {genre.name}
                   </Button>

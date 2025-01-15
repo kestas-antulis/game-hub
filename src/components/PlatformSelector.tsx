@@ -7,19 +7,21 @@ import {
   MenuItem,
   useDisclosure,
 } from "@chakra-ui/react";
-import usePlatforms, { TParentPlatform } from "@/hooks/usePlatforms";
+import usePlatforms from "@/hooks/usePlatforms";
 import usePlatform from "@/hooks/usePlatform";
+import useGameQueryStore from "@/store";
 
-type TProps = {
-  onActivePlatform: (activePlatform: TParentPlatform) => void;
-  activePlatformId?: number;
-};
-
-function PlatformSelector({ onActivePlatform, activePlatformId }: TProps) {
+function PlatformSelector() {
   const { data: platforms, error } = usePlatforms();
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const activePlatform = usePlatform(activePlatformId);
+  const setSelectedPlatformid = useGameQueryStore(
+    (store) => store.setPlatformid
+  );
+  const selectedPlatformId = useGameQueryStore(
+    (store) => store.gameQuery.platformId
+  );
+  const selectedPlatform = usePlatform(selectedPlatformId);
 
   if (error) return null;
 
@@ -33,13 +35,13 @@ function PlatformSelector({ onActivePlatform, activePlatformId }: TProps) {
             onMouseOutCapture={onClose}
             rightIcon={isOpen ? <BsChevronUp /> : <BsChevronDown />}
           >
-            {activePlatform?.name || "Platform"}
+            {selectedPlatform?.name || "Platform"}
           </MenuButton>
           <MenuList onMouseOver={onOpen} onMouseOutCapture={onClose}>
             {platforms?.results.map((platform) => (
               <MenuItem
                 key={platform.id}
-                onClick={() => onActivePlatform(platform)}
+                onClick={() => setSelectedPlatformid(platform.id)}
                 justifyContent="space-between"
               >
                 {platform.name}

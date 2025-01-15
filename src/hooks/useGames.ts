@@ -1,6 +1,6 @@
-import { TGameQuery } from "@/App";
 import { TParentPlatform } from "./usePlatforms";
 import useInfiniteData from "./useInfiniteData";
+import useGameQueryStore from "@/store";
 
 export type TGame = {
   id: number;
@@ -11,12 +11,13 @@ export type TGame = {
   parent_platforms: { platform: TParentPlatform }[];
 };
 
-function useGames(gameQuery: TGameQuery) {
+function useGames() {
+  const gameQuery = useGameQueryStore((store) => store.gameQuery);
   return useInfiniteData<TGame>("/games", "games", {
     params: {
       genres: gameQuery.genreId,
       parent_platforms: gameQuery.platformId,
-      ordering: gameQuery.order,
+      ordering: gameQuery.sortOrder,
       search: gameQuery.searchText,
     },
   });

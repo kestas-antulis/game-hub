@@ -1,12 +1,10 @@
+import useGameQueryStore from "@/store";
 import { Box, Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
 import { useRef } from "react";
 import { FaSearch } from "react-icons/fa";
 
-type TProps = {
-  onSearch: (searchText: string) => void;
-};
-
-function SearchInput({ onSearch }: TProps) {
+function SearchInput() {
+  const setSearchText = useGameQueryStore((store) => store.setSearchText);
   const searchRef = useRef<HTMLInputElement>(null);
 
   return (
@@ -15,7 +13,7 @@ function SearchInput({ onSearch }: TProps) {
         onSubmit={(e) => {
           e.preventDefault();
           if (searchRef.current) {
-            onSearch(searchRef.current.value);
+            setSearchText(searchRef.current.value);
           }
         }}
       >
