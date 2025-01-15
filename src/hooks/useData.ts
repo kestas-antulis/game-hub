@@ -1,6 +1,7 @@
 import create, { TResponse } from "@/services/apiClient";
 import { useQuery } from "@tanstack/react-query";
 import { AxiosRequestConfig } from "axios";
+import ms from "ms";
 
 function useData<T>(
   endpoint: string,
@@ -22,6 +23,7 @@ function useData<T>(
       previous: null,
       results: initialData.results as T[],
     },
+    staleTime: ms("6h"),
   });
 }
 
