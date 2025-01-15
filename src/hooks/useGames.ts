@@ -14,8 +14,8 @@ export type TGame = {
 function useGames(gameQuery: TGameQuery) {
   return useInfiniteData<TGame>("/games", "games", {
     params: {
-      genres: gameQuery.genre?.id,
-      parent_platforms: gameQuery.platform?.id,
+      genres: gameQuery.genreId,
+      parent_platforms: gameQuery.platformId,
       ordering: gameQuery.order,
       search: gameQuery.searchText,
     },

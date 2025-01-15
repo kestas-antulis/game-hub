@@ -5,6 +5,7 @@ import { AxiosRequestConfig } from "axios";
 function useData<T>(
   endpoint: string,
   queryKey: string,
+  initialData: TResponse<T>,
   requestConfig?: AxiosRequestConfig
 ) {
   const apiClient = create<TResponse<T>>(endpoint);
@@ -14,6 +15,12 @@ function useData<T>(
     queryFn: () => {
       const { request } = apiClient.getAll(requestConfig);
       return request.then((response) => response.data);
+    },
+    initialData: {
+      count: initialData.count,
+      next: null,
+      previous: null,
+      results: initialData.results as T[],
     },
   });
 }

@@ -2,7 +2,7 @@ import { SimpleGrid, Skeleton, Text } from "@chakra-ui/react";
 import useGames from "@/hooks/useGames";
 import GameCard from "./GameCard";
 import { TGameQuery } from "@/App";
-import React, { useReducer } from "react";
+import React from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 
 type TProps = {
@@ -14,7 +14,6 @@ function GameGrid({ gameQuery }: TProps) {
     data: games,
     error,
     isFetching,
-    isLoading,
     isFetchingNextPage,
     fetchNextPage,
     hasNextPage,

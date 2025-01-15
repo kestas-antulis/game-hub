@@ -1,3 +1,4 @@
+import platforms from "@/data/platforms";
 import useData from "./useData";
 
 type TPlatform = {
@@ -15,7 +16,11 @@ export type TParentPlatform = {
 };
 
 function usePlatforms() {
-  return useData<TParentPlatform>("/platforms/lists/parents", "platforms");
+  return useData<TParentPlatform>(
+    "/platforms/lists/parents",
+    "platforms",
+    platforms
+  );
 }
 
 export default usePlatforms;

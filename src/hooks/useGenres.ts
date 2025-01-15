@@ -1,4 +1,5 @@
 import useData from "./useData";
+import genres from "@/data/genres";
 
 export type TGenre = {
   id: number;
@@ -9,7 +10,7 @@ export type TGenre = {
 };
 
 function useGenres() {
-  return useData<TGenre>("/genres", "genres");
+  return useData<TGenre>("/genres", "genres", genres);
 }
 
 export default useGenres;
