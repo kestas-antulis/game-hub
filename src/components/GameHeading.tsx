@@ -1,20 +1,23 @@
-import { TGameQuery } from "@/App";
 import useGenre from "@/hooks/useGenre";
 import usePlatform from "@/hooks/usePlatform";
+import useGameQueryStore from "@/store";
 import { Heading } from "@chakra-ui/react";
 
-type TProps = {
-  gameQuery: TGameQuery;
-};
+function GameHeading() {
+  const selectedPlatformId = useGameQueryStore(
+    (store) => store.gameQuery.platformId
+  );
+  const selectedPlatform = usePlatform(selectedPlatformId);
 
-function GameHeading({ gameQuery }: TProps) {
-  const activePlatform = usePlatform(gameQuery.platformId);
-  const activeGenre = useGenre(gameQuery.genreId);
+  const selectedGenreId = useGameQueryStore((store) => store.gameQuery.genreId);
+  const selectedGenre = useGenre(selectedGenreId);
+
+  const searchText = useGameQueryStore((store) => store.gameQuery.searchText);
 
   return (
     <Heading as="h1" marginBottom="20px">
-      {activePlatform?.name} {activeGenre?.name} Games{" "}
-      {gameQuery.searchText ? `: "${gameQuery.searchText}"` : ""}
+      {selectedPlatform?.name} {selectedGenre?.name} Games{" "}
+      {searchText ? `: "${searchText}"` : ""}
     </Heading>
   );
 }

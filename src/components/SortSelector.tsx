@@ -1,3 +1,4 @@
+import useGameQueryStore from "@/store";
 import {
   Button,
   Menu,
@@ -8,12 +9,7 @@ import {
 } from "@chakra-ui/react";
 import { BsChevronDown, BsChevronUp } from "react-icons/bs";
 
-type TProps = {
-  onSelectSortOrder: (order: string) => void;
-  sortSelector: string;
-};
-
-function SortSelector({ onSelectSortOrder, sortSelector }: TProps) {
+function SortSelector() {
   const sortOrder = [
     { value: "", label: "Relevance" },
     { value: "name", label: "Name" },
@@ -25,8 +21,12 @@ function SortSelector({ onSelectSortOrder, sortSelector }: TProps) {
     { value: "-updated", label: "Date Updated" },
   ];
 
+  const setSelectedSortOrder = useGameQueryStore((store) => store.setSortOrder);
+  const selectedSortOrder = useGameQueryStore(
+    (store) => store.gameQuery.sortOrder
+  );
   const currentSortOrder = sortOrder.find(
-    (item) => item.value === sortSelector
+    (item) => item.value === selectedSortOrder
   );
 
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -45,7 +45,7 @@ function SortSelector({ onSelectSortOrder, sortSelector }: TProps) {
           <MenuList onMouseOver={onOpen} onMouseOutCapture={onClose}>
             {sortOrder.map((order) => (
               <MenuItem
-                onClick={() => onSelectSortOrder(order.value)}
+                onClick={() => setSelectedSortOrder(order.value)}
                 key={order.value}
                 value={order.value}
                 justifyContent="space-between"
