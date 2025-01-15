@@ -7,17 +7,19 @@ import {
   MenuItem,
   useDisclosure,
 } from "@chakra-ui/react";
-import usePlatforms from "@/hooks/usePlatforms";
-import { TParentPlatform } from "@/hooks/useGames";
+import usePlatforms, { TParentPlatform } from "@/hooks/usePlatforms";
+import usePlatform from "@/hooks/usePlatform";
 
 type TProps = {
   onActivePlatform: (activePlatform: TParentPlatform) => void;
-  activePlatform: TParentPlatform | null;
+  activePlatformId?: number;
 };
 
-function PlatformSelector({ onActivePlatform, activePlatform }: TProps) {
+function PlatformSelector({ onActivePlatform, activePlatformId }: TProps) {
   const { data: platforms, error } = usePlatforms();
   const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const activePlatform = usePlatform(activePlatformId);
 
   if (error) return null;
 

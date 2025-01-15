@@ -13,22 +13,22 @@ import {
 
 type TProps = {
   onSelectGenre: (genre: TGenre) => void;
-  activeGenre: TGenre | null;
+  activeGenreId?: number;
 };
 
-function GenreList({ onSelectGenre, activeGenre }: TProps) {
-  const { data: genres, error, isLoading } = useGenres();
+function GenreList({ onSelectGenre, activeGenreId }: TProps) {
+  const { data: genres, error, isFetching } = useGenres();
 
   return (
     <>
       <Heading fontSize="2xl" marginBottom={3}>
         Genres
       </Heading>
-      {error && <Text>{error}</Text>}
+      {error && <Text>{error.message}</Text>}
       <List>
         {genres &&
           genres.results.map((genre) => (
-            <Skeleton isLoaded={!isLoading} key={genre.id}>
+            <Skeleton isLoaded={!isFetching} key={genre.id}>
               <ListItem paddingTop="8px">
                 <HStack className="group">
                   <Image
@@ -46,9 +46,7 @@ function GenreList({ onSelectGenre, activeGenre }: TProps) {
                     padding="8px"
                     onClick={() => onSelectGenre(genre)}
                     _groupHover={{ textDecoration: "underline" }}
-                    fontWeight={
-                      activeGenre?.id === genre.id ? "bold" : "normal"
-                    }
+                    fontWeight={activeGenreId === genre.id ? "bold" : "normal"}
                   >
                     {genre.name}
                   </Button>
