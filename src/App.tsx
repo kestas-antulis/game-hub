@@ -21,11 +21,16 @@ function App() {
 
   return (
     <Grid
+      gridTemplateColumns={{
+        base: "1fr",
+        lg: `minmax(300px, auto) 1fr`,
+      }}
       templateAreas={{
         base: `"nav" "main"`,
         lg: `"nav nav" "aside main"`,
       }}
       justifyContent="center"
+      maxWidth="1440px"
     >
       <GridItem area="nav">
         <Navbar
@@ -50,6 +55,7 @@ function App() {
           lg: "20px",
           "2xl": "0",
         }}
+        justifySelf="stretch"
       >
         <GameHeading gameQuery={gameQuery} />
         <HStack spacing={5}>

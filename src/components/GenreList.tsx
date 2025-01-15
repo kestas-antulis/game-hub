@@ -17,8 +17,7 @@ type TProps = {
 };
 
 function GenreList({ onSelectGenre, activeGenre }: TProps) {
-  const { data: genres, error, isLoading } = useGenres();
-  console.log(genres);
+  const { data: genres, error, isFetching } = useGenres();
 
   return (
     <>
@@ -29,7 +28,7 @@ function GenreList({ onSelectGenre, activeGenre }: TProps) {
       <List>
         {genres &&
           genres.results.map((genre) => (
-            <Skeleton isLoaded={!isLoading} key={genre.id}>
+            <Skeleton isLoaded={!isFetching} key={genre.id}>
               <ListItem paddingTop="8px">
                 <HStack className="group">
                   <Image
