@@ -1,8 +1,10 @@
 import { TPlatform } from "@/entities/TPlatform";
 
-export type TParentPlatform = {
+type TParentPlatform = {
   id: number;
   name: string;
   slug: string;
   platforms: TPlatform[];
 };
+
+export default TParentPlatform;

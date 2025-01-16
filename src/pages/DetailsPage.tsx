@@ -1,4 +1,5 @@
 import ExpandableText from "@/components/ExpandableTExt";
+import GameAttributes from "@/components/GameAttributes";
 import useGame from "@/hooks/useGame";
 import { Box, Heading, Spinner } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
@@ -15,6 +16,7 @@ function DetailsPage() {
     <Box padding={6}>
       <Heading>{game.name}</Heading>
       <ExpandableText>{game.description_raw}</ExpandableText>
+      <GameAttributes game={game} />
     </Box>
   );
 }

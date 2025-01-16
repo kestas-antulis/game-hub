@@ -1,4 +1,6 @@
-import { TParentPlatform } from "@/entities/TParentPlatform";
+import TParentPlatform from "@/entities/TParentPlatform";
+import TGenre from "./TGenre";
+import TPublisher from "./TPublisher";
 
 export type TGame = {
   id: number;
@@ -8,5 +10,7 @@ export type TGame = {
   background_image: string;
   metacritic: number;
   rating: number;
+  genres: TGenre[];
+  publishers: TPublisher[];
   parent_platforms: { platform: TParentPlatform }[];
 };
