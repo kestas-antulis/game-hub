@@ -1,18 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
-import { TParentPlatform } from "./usePlatforms";
 import ms from "ms";
 import create from "@/services/apiClient";
-
-export type TGame = {
-  id: number;
-  name: string;
-  slug: string;
-  description_raw: string;
-  background_image: string;
-  metacritic: number;
-  rating: number;
-  parent_platforms: { platform: TParentPlatform }[];
-};
+import { TGame } from "../entities/TGame";
 
 function useGame(slug: string) {
   const apiClient = create<TGame>(`/games`);

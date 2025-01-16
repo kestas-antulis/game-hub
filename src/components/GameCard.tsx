@@ -2,8 +2,8 @@ import { Box, Card, CardBody, Heading, HStack, Image } from "@chakra-ui/react";
 import IconPlatformList from "./IconPlatformList";
 import CriticScore from "./CriticScore";
 import getCroppedImageUrl from "@/services/imageUrl";
-import { TGame } from "@/hooks/useGames";
 import { Link } from "react-router-dom";
+import { TGame } from "@/entities/TGame";
 
 type TProps = {
   game: TGame;

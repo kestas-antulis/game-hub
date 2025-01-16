@@ -1,16 +1,6 @@
-import { TParentPlatform } from "./usePlatforms";
 import useInfiniteData from "./useInfiniteData";
 import useGameQueryStore from "@/store";
-
-export type TGame = {
-  id: number;
-  name: string;
-  slug: string;
-  background_image: string;
-  metacritic: number;
-  rating: number;
-  parent_platforms: { platform: TParentPlatform }[];
-};
+import { TGame } from "../entities/TGame";
 
 function useGames() {
   const gameQuery = useGameQueryStore((store) => store.gameQuery);

@@ -1,19 +1,6 @@
 import platforms from "@/data/platforms";
 import useData from "./useData";
-
-type TPlatform = {
-  id: number;
-  name: string;
-  slug: string;
-  games_count: number;
-};
-
-export type TParentPlatform = {
-  id: number;
-  name: string;
-  slug: string;
-  platforms: TPlatform[];
-};
+import { TParentPlatform } from "../entities/TParentPlatform";
 
 function usePlatforms() {
   return useData<TParentPlatform>(
