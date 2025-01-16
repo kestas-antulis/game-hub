@@ -1,8 +1,9 @@
-import { Card, CardBody, Heading, HStack, Image } from "@chakra-ui/react";
+import { Box, Card, CardBody, Heading, HStack, Image } from "@chakra-ui/react";
 import IconPlatformList from "./IconPlatformList";
 import CriticScore from "./CriticScore";
 import getCroppedImageUrl from "@/services/imageUrl";
 import { TGame } from "@/hooks/useGames";
+import { Link } from "react-router-dom";
 
 type TProps = {
   game: TGame;
@@ -10,37 +11,41 @@ type TProps = {
 
 function GameCard({ game }: TProps) {
   return (
-    <Card
-      borderRadius="10px"
-      overflow="hidden"
+    <Box
+      transition="transform 0.25s ease"
+      _hover={{ transform: "scale(1.05)" }}
       height="100%"
       className="group"
-      transition="transform 0.25s ease"
-      _hover={{ transform: "translate(0, -10px)" }}
+      borderRadius="10px"
+      overflow="hidden"
     >
-      <Image
-        src={getCroppedImageUrl(game.background_image)}
-        alt={game.name}
-        title={game.name}
-        cursor="pointer"
-        objectFit="cover"
-        objectPosition="top"
-        overflow="hidden"
-        transition="transform 0.25s ease"
-      />
-      <CardBody>
-        <HStack justifyContent="space-between" marginBottom="10px">
-          <IconPlatformList
-            platforms={game.parent_platforms?.map(({ platform }) => platform)}
-          />
-          <HStack>
-            {game.rating && <CriticScore score={game.rating} />}
-            {game.metacritic && <CriticScore score={game.metacritic} />}
+      <Card height="100%">
+        <Image
+          src={getCroppedImageUrl(game.background_image)}
+          alt={game.name}
+          title={game.name}
+          cursor="pointer"
+          objectFit="cover"
+          objectPosition="top"
+          overflow="hidden"
+        />
+        <CardBody>
+          <HStack justifyContent="space-between" marginBottom="10px">
+            <IconPlatformList
+              platforms={game.parent_platforms?.map(({ platform }) => platform)}
+            />
+            <HStack>
+              {game.rating && <CriticScore score={game.rating} />}
+              {game.metacritic && <CriticScore score={game.metacritic} />}
+            </HStack>
           </HStack>
-        </HStack>
-        <Heading fontSize="2xl">{game.name}</Heading>
-      </CardBody>
-    </Card>
+
+          <Heading fontSize="2xl">
+            <Link to={`/games/${game.slug}`}>{game.name}</Link>
+          </Heading>
+        </CardBody>
+      </Card>
+    </Box>
   );
 }
 

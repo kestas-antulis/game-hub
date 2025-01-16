@@ -6,7 +6,7 @@ import ms from "ms";
 function useData<T>(
   endpoint: string,
   queryKey: string,
-  initialData: TResponse<T>,
+  initialData?: TResponse<T>,
   requestConfig?: AxiosRequestConfig
 ) {
   const apiClient = create<TResponse<T>>(endpoint);
@@ -18,10 +18,10 @@ function useData<T>(
       return request.then((response) => response.data);
     },
     initialData: {
-      count: initialData.count,
+      count: initialData?.count || 0,
       next: null,
       previous: null,
-      results: initialData.results as T[],
+      results: initialData?.results as T[],
     },
     staleTime: ms("6h"),
   });

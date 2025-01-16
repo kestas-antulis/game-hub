@@ -1,7 +1,8 @@
-import { Flex, Image } from "@chakra-ui/react";
+import { Box, Flex, Image } from "@chakra-ui/react";
 import ColorModeSwitch from "./ColorModeSwitch";
 import logo from "../assets/logo.webp";
 import SearchInput from "./SearchInput";
+import { Link } from "react-router-dom";
 
 function Navbar() {
   return (
@@ -20,7 +21,11 @@ function Navbar() {
         "2xl": "0",
       }}
     >
-      <Image src={logo} boxSize="60px;" order={{ base: 1, sm: 2 }} />
+      <Box boxSize="60px;">
+        <Link to="/">
+          <Image src={logo} boxSize="60px;" order={{ base: 1, sm: 2 }} />
+        </Link>
+      </Box>
       <SearchInput />
       <ColorModeSwitch />
     </Flex>

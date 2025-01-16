@@ -33,6 +33,7 @@ function GameGrid() {
           columns={{ sm: 1, md: 2, lg: 3, xl: 4 }}
           spacing={5}
           marginTop={{ base: "0", sm: "20px" }}
+          padding={5}
         >
           {games &&
             games.pages.map((page, index) => (
