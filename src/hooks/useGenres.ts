@@ -1,4 +1,4 @@
-import { TGenre } from "../entities/TGenre";
+import TGenre from "../entities/TGenre";
 import useData from "./useData";
 import genres from "@/data/genres";
 

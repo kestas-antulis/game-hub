@@ -1,6 +1,6 @@
 import platforms from "@/data/platforms";
 import useData from "./useData";
-import { TParentPlatform } from "../entities/TParentPlatform";
+import TParentPlatform from "../entities/TParentPlatform";
 
 function usePlatforms() {
   return useData<TParentPlatform>(
