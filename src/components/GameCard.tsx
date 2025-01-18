@@ -20,15 +20,17 @@ function GameCard({ game }: TProps) {
       overflow="hidden"
     >
       <Card height="100%">
-        <Image
-          src={getCroppedImageUrl(game.background_image)}
-          alt={game.name}
-          title={game.name}
-          cursor="pointer"
-          objectFit="cover"
-          objectPosition="top"
-          overflow="hidden"
-        />
+        <Link to={`/games/${game.slug}`}>
+          <Image
+            src={getCroppedImageUrl(game.background_image)}
+            alt={game.name}
+            title={game.name}
+            cursor="pointer"
+            objectFit="cover"
+            objectPosition="top"
+            overflow="hidden"
+          />
+        </Link>
         <CardBody>
           <HStack justifyContent="space-between" marginBottom="10px">
             <IconPlatformList
