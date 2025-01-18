@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import ms from "ms";
 import create from "@/services/apiClient";
-import { TGame } from "../entities/TGame";
+import TGame from "../entities/TGame";
 
 function useGame(slug: string) {
   const apiClient = create<TGame>(`/games`);

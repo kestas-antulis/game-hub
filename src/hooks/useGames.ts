@@ -1,6 +1,6 @@
 import useInfiniteData from "./useInfiniteData";
 import useGameQueryStore from "@/store";
-import { TGame } from "../entities/TGame";
+import TGame from "../entities/TGame";
 
 function useGames() {
   const gameQuery = useGameQueryStore((store) => store.gameQuery);

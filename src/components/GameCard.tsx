@@ -3,7 +3,7 @@ import IconPlatformList from "./IconPlatformList";
 import CriticScore from "./CriticScore";
 import getCroppedImageUrl from "@/services/imageUrl";
 import { Link } from "react-router-dom";
-import { TGame } from "@/entities/TGame";
+import TGame from "@/entities/TGame";
 
 type TProps = {
   game: TGame;

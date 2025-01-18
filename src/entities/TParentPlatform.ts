@@ -1,4 +1,4 @@
-import { TPlatform } from "@/entities/TPlatform";
+import TPlatform from "@/entities/TPlatform";
 
 type TParentPlatform = {
   id: number;

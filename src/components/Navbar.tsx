@@ -11,19 +11,19 @@ function Navbar() {
       alignItems="center"
       flexWrap={{ base: "wrap", sm: "nowrap" }}
       justifyContent="space-between"
-      gap={{ base: "10px", sm: "20px" }}
+      gap={{ base: 2, sm: 3 }}
       marginBottom={{ base: "20px", sm: "0" }}
-      padding={{
-        base: "10px",
-        sm: "20px",
-        md: "20px",
-        lg: "20px",
-        "2xl": "0",
-      }}
+      paddingX={{ base: 3, lg: 6 }}
+      paddingY={{ base: 2 }}
     >
-      <Box boxSize="60px;">
+      <Box>
         <Link to="/">
-          <Image src={logo} boxSize="60px;" order={{ base: 1, sm: 2 }} />
+          <Image
+            src={logo}
+            boxSize="60px"
+            objectFit="cover"
+            order={{ base: 1, sm: 2 }}
+          />
         </Link>
       </Box>
       <SearchInput />

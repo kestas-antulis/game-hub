@@ -1,5 +1,5 @@
 import create from "@/services/apiClient";
-import { TResponse } from "@/entities/TResponse";
+import TResponse from "@/entities/TResponse";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { AxiosRequestConfig } from "axios";
 

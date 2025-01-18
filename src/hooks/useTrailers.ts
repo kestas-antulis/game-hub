@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import ms from "ms";
 import create from "@/services/apiClient";
 import TTrailer from "../entities/TTrailer";
-import { TResponse } from "@/entities/TResponse";
+import TResponse from "@/entities/TResponse";
 
 function useTrailers(slug: string) {
   const apiClient = create<TResponse<TTrailer>>(`/games/${slug}/movies`);

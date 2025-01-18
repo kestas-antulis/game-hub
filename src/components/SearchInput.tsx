@@ -2,11 +2,10 @@ import useGameQueryStore from "@/store";
 import { Box, Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
 import { useRef } from "react";
 import { FaSearch } from "react-icons/fa";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function SearchInput() {
   const navigate = useNavigate();
-  const location = useLocation();
   const setSearchText = useGameQueryStore((store) => store.setSearchText);
   const searchRef = useRef<HTMLInputElement>(null);
 
@@ -15,9 +14,7 @@ function SearchInput() {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          if (location.pathname !== "/") {
-            navigate("/");
-          }
+          navigate("/");
           if (searchRef.current) {
             setSearchText(searchRef.current.value);
           }

@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import ms from "ms";
 import create from "@/services/apiClient";
-import { TResponse } from "@/entities/TResponse";
+import TResponse from "@/entities/TResponse";
 import TScreenshot from "@/entities/TScreenshot";
 
 function useScreenshots(slug: string) {

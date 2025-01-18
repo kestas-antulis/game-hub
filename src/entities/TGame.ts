@@ -2,7 +2,7 @@ import TParentPlatform from "@/entities/TParentPlatform";
 import TGenre from "./TGenre";
 import TPublisher from "./TPublisher";
 
-export type TGame = {
+type TGame = {
   id: number;
   name: string;
   slug: string;
@@ -14,3 +14,5 @@ export type TGame = {
   publishers: TPublisher[];
   parent_platforms: { platform: TParentPlatform }[];
 };
+
+export default TGame;

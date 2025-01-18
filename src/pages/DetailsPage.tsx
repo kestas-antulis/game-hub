@@ -14,14 +14,19 @@ function DetailsPage() {
   if (error || !game) throw error;
 
   return (
-    <SimpleGrid padding={6} columns={2} gap={2}>
+    <SimpleGrid
+      paddingX={{ base: 3, lg: 6 }}
+      paddingY={{ base: 2 }}
+      columns={{ base: 1, lg: 2 }}
+      spacing={3}
+    >
       <GridItem>
         <Heading>{game.name}</Heading>
         <ExpandableText>{game.description_raw}</ExpandableText>
         <GameAttributes game={game} />
       </GridItem>
       <GridItem>
-        <SimpleGrid columns={2} gap={3}>
+        <SimpleGrid columns={{ base: 1, md: 2 }} spacing={2}>
           <GameScreenshots gameSlug={game.slug} maxImageCount={10} />
         </SimpleGrid>
       </GridItem>
