@@ -1,4 +1,4 @@
-import ExpandableText from "@/components/ExpandableTExt";
+import ExpandableText from "@/components/ExpandableText";
 import GameAttributes from "@/components/GameAttributes";
 import GameScreenshots from "@/components/GameScreenshots";
 import useGame from "@/hooks/useGame";
